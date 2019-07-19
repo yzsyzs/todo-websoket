@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>todo-websoket</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="todo-websoket">
+  <link rel="shortcut icon" href="/static/img/logo.png">
+  <title>todo-websoket</title>
+</head>
+<body>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+<script>
+  // 根元素html字体大小随屏幕变化
+  fnResize()
+  window.onresize = function () {
+    fnResize()
+  }
+
+  function fnResize () {
+    var deviceWidth = document.documentElement.clientWidth || window.innerWidth
+    if (deviceWidth >= 750) {
+      deviceWidth = 750
+    }
+    if (deviceWidth <= 320) {
+      deviceWidth = 320
+    }
+    document.documentElement.style.fontSize = (deviceWidth / 7.5) * 2 + 'px'
+  }
+</script>
+</body>
 </html>

@@ -1,113 +1,71 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  // mapMutations,
+  import {mapGetters, mapActions, mapState} from 'vuex'
+
+  export default {
+    name: 'HelloWorld',
+    data () {
+      return {
+        activeBtnForm: false
+      }
+    },
+    computed: {
+      // 使用对象展开运算符将 getter 混入 computed 对象中
+      ...mapGetters('user', [
+        'getUserGetter'
+      ]),
+      ...mapGetters([
+        'detailObj'
+      ]),
+      ...mapState('user', {
+        user: state => state.user
+      }),
+      ...mapState({
+        detailObj: state => state.detailObj
+      })
+    },
+    created () {
+      console.log(this.user)
+    },
+    methods: {
+      ...mapActions('user', [
+        'getUserAction'
+      ]),
+      ...mapActions([
+        'getDetail'
+      ]),
+      // 点击 下载表格的方法
+      downForm () {
+        this.activeBtnForm = true
+        window.myapi.downDevItemData({}).then(res => {
+          if (res.status === 200) {
+            let url = window.URL.createObjectURL(new Blob([res.data], {type: res.data.type}))
+            let filename = decodeURI(res.headers['content-disposition'].split(';')[1].trim().substr(
+              'filename='.length))
+            let link = document.createElement('a')
+            link.style.display = 'none'
+            link.href = url
+            link.setAttribute('download', filename)
+            document.body.appendChild(link)
+            link.click()
+            this.activeBtnForm = false
+          } else {
+            let msg = res.data.msg ? res.data.msg : '请求数据失败!'
+            this.$Message.error({content: msg, duration: 5, closable: true})
+          }
+        }).catch(function (e) {
+        })
+      }
     }
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+<style lang="scss" scoped>
+
 </style>

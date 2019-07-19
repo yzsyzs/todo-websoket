@@ -1,0 +1,122 @@
+/*颜色区*/
+$color-primary: #373a3a; // 主题色
+$color-font: #F8A406; // 字体主要颜色
+$color: #fff; // 白色字体
+$color-6e: #6e66db; // 淡紫色字体
+$color-f3: #ff3333; // 待报价字体颜色
+$color-o: rgba(175, 47, 47, .8); // 待opacity的颜色
+$color-d4: #4d4d4d; // 商品名称字体颜色
+$color-b3: #b3b3b3; // 重量以及数量字体颜色
+$color-66: #666; // 666 字体颜色
+$color-80: #808080; // 808080 字体颜色
+$color-input: #f5f5f5; // input 框的 背景色
+/*背景图片定位区*/
+$image3: '../../../assets/images/';
+$image2: '../../assets/images/';
+$image1: '../assets/images/';
+/*背景颜色区*/
+$background-ff: #ff8a00;
+/*字体大小区*/
+$font-18: .18rem;
+$font-24: .24rem;
+// 公用代码
+body{
+  min-height: 100%;
+  background:#fff;
+  margin: 0;
+  //font-size: 1rem;/*1.4 × 10px = 14px */
+  font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+ul,li,h1,h2,h3,h4,h5,h6,dl,dt,dd,p,input,button {
+  margin:0;
+  padding:0;
+  border:none;
+  list-style:none;
+}
+input{
+  outline:none;
+}
+a{
+  text-decoration: none;
+}
+input[type=button], input[type=submit], input[type=file], button {
+  cursor: pointer;
+  outline: 0px;
+  -webkit-appearance: none;
+}
+a:hover{
+  //text-decoration: underline;
+  //color:#f00;
+  cursor: pointer;
+}
+.clear{
+  clear:both;
+}
+.lf{
+  float:left;
+}
+.rt{
+  float:right;
+}
+img{
+  vertical-align: bottom;
+}
+[v-cloak] {
+  display: none;
+}
+.flex {
+  display: flex;
+}
+/*公共的类名 滚动条样式的*/
+.scrollbar {
+  overflow-y: scroll;
+  scrollbar-color: transparent transparent;
+  scrollbar-width: 2px;
+  scrollbar-track-color: transparent;
+  -ms-scrollbar-track-color: transparent;
+}
+.scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/*正常情况下滑块的样式*/
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, .05);
+  border-radius: 10px;
+  -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1);
+  -moz-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1);
+}
+
+/*鼠标悬浮在该类指向的控件上时滑块的样式*/
+.scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, .2);
+  border-radius: 10px;
+  -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1);
+  -moz-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1);
+}
+
+/*鼠标悬浮在滑块上时滑块的样式*/
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, .4);
+  -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1);
+  -moz-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1);
+}
+
+/*正常时候的主干部分*/
+.scrollbar::-webkit-scrollbar-track {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+  -moz-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+  background-color: rgba(15,27,67,.6);
+}
+
+/*鼠标悬浮在滚动条上的主干部分*/
+.scrollbar::-webkit-scrollbar-track:hover {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .4);
+  -moz-box-shadow: inset 0 0 6px rgba(0, 0, 0, .4);
+  background-color: rgba(0, 0, 0, .01);
+}
