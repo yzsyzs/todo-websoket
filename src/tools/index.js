@@ -23,7 +23,7 @@ export const getUrlParms = (name, bool) => {
   if (bool) {
     var r = decodeURIComponent(window.location.search).substr(1).match(reg)
   } else {
-    var r = window.location.search.substr(1).match(reg)
+    r = window.location.search.substr(1).match(reg)
   }
 
   if (r !== null) {
@@ -31,28 +31,28 @@ export const getUrlParms = (name, bool) => {
   }
   return null
 }
-//判断是否是数组的 方法
+// 判断是否是数组的 方法
 export const isArr = val => {
   return Object.prototype.toString.call(val) === '[object Array]'
 }
-//克隆方法
+// 克隆方法
 export const extend = (obj1, obj2) => {
   for (var k in obj2) {
     obj1[k] = obj2[k]
   }
 }
-//深度克隆方法
+// 深度克隆方法
 export const cloneObj = obj => {
-  var str, newobj = obj.constructor === Array ? [] : {}
+  var str
+  var newobj = obj.constructor === Array ? [] : {}
   if (typeof obj !== 'object') {
     return
   } else if (window.JSON) {
-    str = JSON.stringify(obj), //系列化对象
-      newobj = JSON.parse(str) //还原
+    str = JSON.stringify(obj) // 系列化对象
+    newobj = JSON.parse(str) // 还原
   } else {
     for (var i in obj) {
-      newobj[i] = typeof obj[i] === 'object' ?
-        cloneObj(obj[i]) : obj[i]
+      newobj[i] = typeof obj[i] === 'object' ? cloneObj(obj[i]) : obj[i]
     }
   }
   return newobj
@@ -80,7 +80,8 @@ export const arrSetNum = arr => {
 // 一个 长度10的数组 怎么随机取出其中5个单项 组成新的数组, 要保证不能重复
 let arr = Array.from(Array(10), (v, k) => k + 1)
 export const getRandomFiveNums = arr => {
-  let retArr = [], hash = {}
+  let retArr = []
+  let hash = {}
   while (retArr.length < 5) {
     let index = (Math.random() * 10) | 0
     if (!hash[index]) {
@@ -96,7 +97,7 @@ let arr12 = Array.from(Array(12), (v, k) => {
   if (k < 9) return '0' + (k + 1)
   return '' + (k + 1)
 })
-
+console.log(arr12)
 export const tools = {
 
   // 获取某个时间点的10位时间戳
@@ -104,10 +105,10 @@ export const tools = {
     return (new Date(new Date().setHours(hour || 0, min || 0, second || 0, 0)) / 1000)
   },
 
-  //标准日期转换为一般日期
+  // 标准日期转换为一般日期
   standTosimple: function (tm, str, HHMM) {
     var sym, tmdate
-    sym = (str == undefined ? '-' : str)
+    sym = (str === undefined ? '-' : str)
 
     function autoFull (str) {
       if (str < 10) {
@@ -124,7 +125,7 @@ export const tools = {
     var hour = autoFull(date.getHours())
     var minute = autoFull(date.getMinutes())
     var second = autoFull(date.getSeconds())
-    //秒级
+    // 秒级
     if (HHMM) {
       tmdate = date.getFullYear() + sym + month + sym + day + ' ' + hour + ':' + minute + ':' + second
     } else {
@@ -132,10 +133,10 @@ export const tools = {
     }
     return tmdate
   },
-  //时间戳转换成日期
+  // 时间戳转换成日期
   timeStampToDate: function (tm, str) {
-    var tmdate, sym
-    var sym = (str == undefined ? '-' : str)
+    var tmdate
+    var sym = (str === undefined ? '-' : str)
 
     function autoFull (str) {
       if (str < 10) {
@@ -160,26 +161,26 @@ export const tools = {
     }
     return tmdate
   },
-  //获取当前日期的年、月、日
+  // 获取当前日期的年、月、日
   dateToYearAndMonth: function (tm) {
     var tmDate = new Date(tm)
     var needTime = {
       'year': tmDate.getFullYear(),
       'month': tmDate.getMonth() + 1,
-      'day': tmDate.getDate(),
+      'day': tmDate.getDate()
     }
     return needTime
   },
-  //日期转换时间戳
+  // 日期转换时间戳
   dateToTimeStamp: function (date, num) {
-    if (date != undefined) {
+    if (date !== undefined) {
       var tm = num ? Date.parse(new Date(date)) : Date.parse(new Date(date)) / 1000
     } else {
       return
     }
     return tm
   },
-  //图片压缩拼接字符串
+  // 图片压缩拼接字符串
   imgCompress: function (str, strScale) {
     if (str) {
       var arr = str.split('.')
@@ -187,39 +188,39 @@ export const tools = {
       var imgUrl = arr.join('.')
       return imgUrl
     } else {
-      return
+      return false
     }
   },
-  //计算某月有多少周，每周的起始日期
+  // 计算某月有多少周，每周的起始日期
   DateInfo: function (tmDate, rankWeek, rankWeekday) {
     var tm = new Date(tmDate)
     var oldDate = new Date(tm)
     var month = oldDate.getMonth() + 1
     var year = oldDate.getFullYear()
     var newDate = year + '/' + month + '/01'
-    //当前月的第一天是周几
-    var weektime = new Date(newDate).getDay() == 0 ? 7 : new Date(newDate).getDay()
-    //当前月一共多少天
+    // 当前月的第一天是周几
+    var weektime = new Date(newDate).getDay() === 0 ? 7 : new Date(newDate).getDay()
+    // 当前月一共多少天
     var newDays = getDays(newDate)
-    //当前月一共多少周
+    // 当前月一共多少周
     var weeks = null
-    if (weektime == 1) {
-      weeks = newDays % 7 == 0 ? parseInt(newDays / 7) : parseInt(newDays / 7) + 1
-    } else if (weektime == 7) {
-      weeks = (newDays - 1) % 7 == 0 ? parseInt((newDays - 1) / 7) + 1 : parseInt((newDays - 1) / 7) + 2
+    if (weektime === 1) {
+      weeks = newDays % 7 === 0 ? parseInt(newDays / 7) : parseInt(newDays / 7) + 1
+    } else if (weektime === 7) {
+      weeks = (newDays - 1) % 7 === 0 ? parseInt((newDays - 1) / 7) + 1 : parseInt((newDays - 1) / 7) + 2
     } else {
-      weeks = (newDays - 7 + weektime) % 7 == 0 ? parseInt((newDays - 7 + weektime) / 7) + 1 : parseInt((newDays - 7 + weektime) / 7) + 2
+      weeks = (newDays - 7 + weektime) % 7 === 0 ? parseInt((newDays - 7 + weektime) / 7) + 1 : parseInt((newDays - 7 + weektime) / 7) + 2
     }
-    //当前日期是本月多少周
+    // 当前日期是本月多少周
     var w = tm.getDay()
     var d = tm.getDate()
     var rankweeks = Math.ceil((d + 6 - w) / 7)
-    //计算每周开始和结束的时间
+    // 计算每周开始和结束的时间
     var weekDays = []
     for (var i = 1; i <= weeks; i++) {
       var startTime = null
       var endTime = null
-      if (weektime == 1) {
+      if (weektime === 1) {
         startTime = 7 * (i - 1) + 1 > newDays ? newDays : 7 * (i - 1) + 1
         endTime = 7 * i > newDays ? newDays : 7 * i
         var timeObj = {
@@ -228,96 +229,94 @@ export const tools = {
         }
         weekDays.push(timeObj)
       } else {
-        if (i == 1) {
+        if (i === 1) {
           startTime = 1
           endTime = 8 - weektime
         } else {
           startTime = 7 * (i - 2) + (8 - weektime + 1) > newDays ? newDays : 7 * (i - 2) + (8 - weektime + 1)
           endTime = 7 * (i - 1) + (8 - weektime) > newDays ? newDays : 7 * (i - 1) + (8 - weektime)
         }
-        var timeObj = {
+        var timeObj1 = {
           'startTime': startTime,
           'endTime': endTime
         }
-        weekDays.push(timeObj)
+        weekDays.push(timeObj1)
       }
     }
     var howManyDay
     if (rankWeekday) {
-      for (var i = 0; i < weekDays.length; i++) {
-        //获取这一天是星期几 星期天转换为7
+      for (let i = 0; i < weekDays.length; i++) {
+        // 获取这一天是星期几 星期天转换为7
         var newRankWeekday = new Date(year + '-' + month + '-' + weekDays[i].startTime).getDay()
-        newRankWeekday = newRankWeekday == 0 ? 7 : newRankWeekday
-        if (i == rankWeek - 1 && i == 0) {
+        newRankWeekday = newRankWeekday === 0 ? 7 : newRankWeekday
+        if (i === rankWeek - 1 && i === 0) {
           if (newRankWeekday > rankWeekday) {
             alert('您输入的日期在当月当周不存在')
           } else {
             if (rankWeekday > 0 && rankWeekday < 8) {
-
-              if (newRankWeekday == rankWeekday) {
+              if (newRankWeekday === rankWeekday) {
                 howManyDay = weekDays[i].startTime
               } else {
                 howManyDay = weekDays[i].startTime + rankWeekday - newRankWeekday
               }
-              //alert("第" + rankWeek + "周，周" + rankWeekday + "是" + month + "月" + howManyDay + "号");
+              // alert("第" + rankWeek + "周，周" + rankWeekday + "是" + month + "月" + howManyDay + "号");
             } else {
               alert('您输入的日期不正确')
             }
           }
-        } else if (i == rankWeek - 1) {
+        } else if (i === rankWeek - 1) {
           if (rankWeekday > 0 && rankWeekday < 8) {
-            if (newRankWeekday == rankWeekday) {
+            if (newRankWeekday === rankWeekday) {
               howManyDay = weekDays[i].startTime
             } else {
               howManyDay = weekDays[i].startTime + rankWeekday - 1
             }
-            //alert("第" + rankWeek + "周，周" + rankWeekday + "是" + month + "月" + howManyDay + "号");
+            // alert("第" + rankWeek + "周，周" + rankWeekday + "是" + month + "月" + howManyDay + "号");
           } else {
             alert('您输入的日期不正确')
           }
-
         }
       }
     }
 
-    //计算当前月份有多少天
+    // 计算当前月份有多少天
     function getDays (t) {
-      //构造当前日期对象
+      // 构造当前日期对象
       var date = new Date(t)
-      //获取年份
+      // 获取年份
       var year = date.getFullYear()
-      //获取当前月份
+      // 获取当前月份
       var mouth = date.getMonth() + 1
-      //定义当月的天数；
+      // 定义当月的天数；
       var days
-      //当月份为二月时，根据闰年还是非闰年判断天数
-      if (mouth == 2) {
-        days = year % 4 == 0 ? 29 : 28
-      } else if (mouth == 1 || mouth == 3 || mouth == 5 || mouth == 7 || mouth == 8 || mouth == 10 || mouth == 12) {
-        //月份为：1,3,5,7,8,10,12 时，为大月.则天数为31；
+      // 当月份为二月时，根据闰年还是非闰年判断天数
+      if (mouth === 2) {
+        days = year % 4 === 0 ? 29 : 28
+      } else if (mouth === 1 || mouth === 3 || mouth === 5 || mouth === 7 || mouth === 8 || mouth === 10 || mouth === 12) {
+        // 月份为：1,3,5,7,8,10,12 时，为大月.则天数为31；
         days = 31
       } else {
-        //其他月份，天数为：30.
+        // 其他月份，天数为：30.
         days = 30
       }
-      //输出天数
+      // 输出天数
       return days
     }
 
     var DateInfoList = {
-      //几号
+      // 几号
       'howManyDay': howManyDay,
-      //那一年
+      // 那一年
       'year': year,
-      //几月
+      // 几月
       'month': month,
-      //每周时间起始点
+      // 每周时间起始点
       'weekDays': weekDays,
-      //当月一共多少天
+      // 当月一共多少天
       'newDays': newDays,
-      //有多少周
+      // 有多少周
       'weeks': weeks,
-      //当前日期是本月多少周
+      // 当前日期是本月多少周
       'rankweeks': rankweeks
     }
     return DateInfoList
@@ -389,15 +388,17 @@ export const changIntoChineseDateMod = (val) => {
  */
 export const changChineseModIntoTimestamp = (val) => {
   if (!val) return
-  let y = '年', m = '月', d = '日'
-  let year = val.split(y)[0], month = val.split(m)[0].split(y)[1], day = val.split(m)[1].split(d)[0]
+  let y = '年'
+  let m = '月'
+  let d = '日'
+  let year = val.split(y)[0]
+  let month = val.split(m)[0].split(y)[1]
+  let day = val.split(m)[1].split(d)[0]
   let res = ''
   if (month) res = year + '-' + month
   if (day) res = year + '-' + month + '-' + day
   return new Date(res).getTime()
 }
-
-
 /*
  * currentDayTimestamp: 当前日期的时间戳
  * index：当前日期在周列表中位于第几位
@@ -413,7 +414,8 @@ export const cal = (currentDayTimestamp, index) => {
       res.unshift({value: moment(timestamp).format('MM-DD'), timestamp: timestamp})
     }
   } else {
-    let bef = [], aft = []
+    let bef = []
+    let aft = []
     for (let j = 0; j < index; j++) {
       let timestamp = currentDayTimestamp - (j + 1) * 86400000
       bef.unshift({value: moment(timestamp).format('MM-DD'), timestamp: timestamp})
@@ -437,18 +439,18 @@ export const cal = (currentDayTimestamp, index) => {
  * return: 返回月份总共的天数
  */
 export const getCountDays = (year, month) => {
-  var year = year, month = month, date = new Date()
+  var date = new Date()
   if (!year) year = date.getFullYear()
-  if (!month) month = (date.getMonth() == 0) ? 12 : (date.getMonth() + 1)
+  if (!month) month = (date.getMonth() === 0) ? 12 : (date.getMonth() + 1)
   var d = new Date(year, month, 0)
   return d.getDate()
 }
-
 /*
  * 组件exportForm 需要的数据格式
  */
 export const getExportFormComItem = (params) => {
-  let items = Object.keys(params), ret = []
+  let items = Object.keys(params)
+  let ret = []
   if (!items || items.length === 0) return ret
   items.forEach((item, index) => {
     let i = {}
@@ -484,5 +486,46 @@ export const compareStartTimeAndEndTime = (startTime, endTime) => {
   return {
     success: true,
     msg: 'OK'
+  }
+}
+// 节流函数
+export const throttle = (self, fun, wait, type) => {
+  if (type === 1) {
+    var previous = 0
+  } else if (type === 2) {
+    var timeout
+  }
+  return () => {
+    if (type === 1) {
+      var now = Date.now()
+      if (now - previous > wait) {
+        previous = now
+      }
+    } else if (type === 2) {
+      if (!timeout) {
+        timeout = setTimeout(() => {
+          timeout = null
+          self[fun]()
+        }, wait)
+      }
+    }
+  }
+}
+// 防抖函数
+export const debounce = (self, fun, wait, immediate) => {
+  var timeout
+  return () => {
+    if (timeout) clearTimeout(timeout)
+    if (immediate) {
+      var callNow = !timeout
+      timeout = setTimeout(() => {
+        timeout = null
+      }, wait)
+      if (callNow) self[fun]()
+    } else {
+      timeout = setTimeout(() => {
+        self[fun](true)
+      }, wait)
+    }
   }
 }
