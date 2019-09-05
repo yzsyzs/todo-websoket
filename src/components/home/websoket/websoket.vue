@@ -1,47 +1,56 @@
 <template>
-  <div id="websoket">
-    <ul>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-      <li><a href="">我是websoket</a></li>
-    </ul>
+  <div id="websoket" style="display:flex;">
+    <div style="flex: 0 0 400px"></div>
+    <div style="flex: 1;text-align: left">
+      <transition name="slide-fade">
+        <div v-show="flag" style="color: #f00" @mouseenter="flag = false">浮窗</div>
+      </transition>
+      <transition name="slide-fade">
+        <div v-show="!flag" style="color: #0f0;padding-left: 200px" @mouseout="flag = true">返回首页</div>
+      </transition>
+    </div>
+<!--    <ul>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--      <li><a href="">我是websoket</a></li>-->
+<!--    </ul>-->
   </div>
 </template>
 
@@ -53,7 +62,9 @@
     props: {},
     // 数据绑定
     data () {
-      return {}
+      return {
+        flag: true
+      }
     },
     // 组件
     components: {},
@@ -83,5 +94,33 @@
 <style lang="scss" scoped='scoped'>
   #websoket {
     @include flex-1;
+    .bounce-enter-active {
+      animation: bounce-in .5s;
+    }
+    .bounce-leave-active {
+      animation: bounce-in .5s reverse;
+    }
+    @keyframes bounce-in {
+      0% {
+        transform: scale(0);
+      }
+      50% {
+        transform: scale(1.5);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    .slide-fade-enter-active {
+      transition: all 1s ease;
+    }
+    /*.slide-fade-leave-active {*/
+    /*  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);*/
+    /*}*/
+    .slide-fade-enter
+      /* .slide-fade-leave-active for below version 2.1.8 */ {
+      transform: translateX(-100px);
+      opacity: 0;
+    }
   }
 </style>
