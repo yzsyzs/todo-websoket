@@ -1,12 +1,10 @@
 <template>
   <div id="websoket" style="display:flex;">
     <div style="flex: 0 0 400px"></div>
-    <div style="flex: 1;text-align: left">
+    <div style="flex: 1;text-align: left;position: relative">
       <transition name="slide-fade">
-        <div v-show="flag" style="color: #f00" @mouseenter="flag = false">浮窗</div>
-      </transition>
-      <transition name="slide-fade">
-        <div v-show="!flag" style="color: #0f0;padding-left: 200px" @mouseout="flag = true">返回首页</div>
+        <h4 v-if="flag" style="color: #f00;position: absolute;left:0;top:0" @mouseenter.self="flag = false">浮窗</h4>
+        <div v-else style="color: #0f0;padding-left: 200px;position: absolute;left:0;top:0" @mouseout.self="flag = true">返回首页</div>
       </transition>
     </div>
 <!--    <ul>-->
@@ -114,12 +112,16 @@
     .slide-fade-enter-active {
       transition: all 1s ease;
     }
-    /*.slide-fade-leave-active {*/
-    /*  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);*/
-    /*}*/
+    .slide-fade-leave-active {
+      transition: all 0.3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
     .slide-fade-enter
       /* .slide-fade-leave-active for below version 2.1.8 */ {
       transform: translateX(-100px);
+      opacity: 0;
+    }
+    .slide-fade-leave-to {
+      transform: translateX(-50px);
       opacity: 0;
     }
   }
