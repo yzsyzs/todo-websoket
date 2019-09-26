@@ -1,6 +1,9 @@
 <template>
   <div id="websoket" style="display:flex;">
-    <div style="flex: 0 0 400px"></div>
+    <div style="flex: 0 0 400px">
+      <div class="img" :class="{animation: isTrue}"></div>
+      <div @click="isTrue = !isTrue">点击我动画</div>
+    </div>
     <div style="flex: 1;text-align: left;position: relative">
       <transition name="slide-fade">
         <h4 v-if="flag" style="color: #f00;position: absolute;left:0;top:0" @mouseenter.self="flag = false">浮窗</h4>
@@ -61,7 +64,8 @@
     // 数据绑定
     data () {
       return {
-        flag: true
+        flag: true,
+        isTrue: false
       }
     },
     // 组件
@@ -123,6 +127,22 @@
     .slide-fade-leave-to {
       transform: translateX(-50px);
       opacity: 0;
+    }
+    .animation{
+      animation: gradientChange .3s infinite alternate;
+      @keyframes gradientChange {
+        0%{
+          background: url('../../../assets/btn.png') no-repeat;
+        }
+        100%{
+          background: url('../../../assets/btn_select.png') no-repeat;
+        }
+      }
+    }
+    .img {
+      width: 40px;
+      height: 40px;
+      /*background: url('../../../assets/btn.png') no-repeat;*/
     }
   }
 </style>
