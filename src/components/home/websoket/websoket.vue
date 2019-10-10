@@ -1,13 +1,13 @@
 <template>
   <div id="websoket" style="display:flex;">
-    <div style="flex: 0 0 400px">
+    <div style="flex: 0 0 100px">
       <div class="img" :class="{animation: isTrue}"></div>
       <div @click="isTrue = !isTrue">点击我动画</div>
     </div>
     <div style="flex: 1;text-align: left;position: relative">
       <transition name="slide-fade">
         <h4 v-if="flag" style="color: #f00;position: absolute;left:0;top:0" @mouseenter.self="flag = false">浮窗</h4>
-        <div v-else style="color: #0f0;padding-left: 200px;position: absolute;left:0;top:0" @mouseout.self="flag = true">返回首页</div>
+        <div v-else style="color: #0f0;padding-left: 200px;position: absolute;left:0;top:0" @mouseleave.self="flag = true">返回首页</div>
       </transition>
     </div>
 <!--    <ul>-->
