@@ -52,6 +52,60 @@
     },
     // 完成挂载，相当于dom ready
     mounted () {
+      // let arr = ['id', 'name']
+      // let ccc = [ ...arr ]
+      // ccc.pop()
+      // console.log(ccc)
+      // console.log(ccc.join().split(','))
+      // let sum = ['max', 'min', 'maxlength']
+      // let c = arr.map(item => {
+      //   return `$$field.${item}`
+      // })
+      // let d = []
+      // for (let k = 0; k < c.length; k++) {
+      //   for (let i = 0; i < sum.length; i++) {
+      //     d.push(`${c[k]}.${sum[i]}$$`)
+      //   }
+      // }
+      // let e = arr.map(item => `$$form.${item}$$`)
+      // console.log(e)
+      // d.unshift('$')
+      // let sss = [ ...d, ...e ]
+      // console.log(sss)
+      // console.log(d)
+      // console.log(c)
+      let a = [
+        {id: 'aaa', parentId: 'fff'},
+        {id: 'bbb', parentId: 'ccc'},
+        {id: 'ccc', parentId: 'ddd'},
+        {id: 'bbb', parentId: 'fff'},
+        {id: 'aaa', parentId: 'eee'}
+      ]
+      console.log(a)
+      // let num = 1
+
+      // function f (arr) {
+      //   let copy = JSON.parse(JSON.stringify(arr))
+      //   for (let i = 0; i <= arr.length; i++) {
+      //     for (let j = 0; j <= copy.length; j++) {
+      //       if (arr[i].name === copy[j].fname) {
+      //         arr[i].num = num
+      //       }
+      //     }
+      //   }
+      // }
+      let cloneData
+      function tree (arr) {
+        cloneData = JSON.parse(JSON.stringify(arr))
+        return cloneData.filter(father => {
+          let branchArr = cloneData.filter(child => father.parentId === child.id)
+          // eslint-disable-next-line no-unused-expressions
+          branchArr.length > 0 ? father.children = branchArr : ''
+          return father.parentId === 0
+        })
+      }
+      tree(a)
+      console.log(cloneData)
     },
     // 销毁，可以做一些定时器的销毁,缓存的清除等操作
     destroyed () {
@@ -66,6 +120,7 @@
     display: flex;
     flex-direction: column;
     font-size: $font-18;
+
     div.home-header {
       flex: 0 0 .6rem;
       background: $color-b3;
@@ -101,6 +156,7 @@
           color: $color-6e;
         }
       }
+
       div.tab-item {
         flex: 1;
         -ms-flex: 1;
