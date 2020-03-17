@@ -31,6 +31,7 @@
     },
     created () {
       console.log(this.user)
+      // let title = list.filter(v => v.wordKey)
     },
     methods: {
       ...mapActions('user', [

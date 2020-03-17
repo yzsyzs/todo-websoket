@@ -15,6 +15,7 @@
       </div>
       <div id="lineChart" ref="lineChart" style="height: 500px;width: 100%;margin-top: 150px"></div>
     </div>
+
     <!--    <ul>-->
     <!--      <li><a href="">我是websoket</a></li>-->
     <!--      <li><a href="">我是websoket</a></li>-->

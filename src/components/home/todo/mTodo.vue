@@ -44,6 +44,13 @@
       <li><a href="">我是websoket</a></li>
       <li><a href="">我是websoket</a></li>
     </ul>
+    <router-link tag="div" class="tab-item" activeClass="active" :to="{path: '/home/todo'}">
+      <span class="tab-link">A</span>
+    </router-link>
+    <router-link tag="div" class="tab-item" activeClass="active" :to="{path: '/home/todo/websoket-B'}">
+      <span class="tab-link">B</span>
+    </router-link>
+    <router-view />
   </section>
 </template>
 

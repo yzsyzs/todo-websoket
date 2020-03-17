@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <div class="home-header flex">
-      <router-link tag="div" class="tab-item" activeClass="active" :to="{path: '/home'}" exact>
+      <router-link tag="div" class="tab-item" activeClass="active" :to="{path: '/home/todo'}">
         <span class="tab-link">首 页</span>
       </router-link>
       <router-link tag="div" class="tab-item" activeClass="active" :to="{path: '/home/websoket'}">
@@ -11,7 +11,9 @@
         <span class="tab-link">登 录</span>
       </router-link>
     </div>
-    <router-view />
+    <keep-alive>
+      <router-view />
+    </keep-alive>
     <div class="home-footer">联系我们01234567890</div>
   </div>
 </template>

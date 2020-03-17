@@ -1,6 +1,8 @@
 <template>
   <div id="app" style="font-size: .28rem">
-    <router-view/>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
   </div>
 </template>
 
